@@ -54,5 +54,9 @@ docker-compose up -d
 `
 ./vendor/bin/sail up
 `
-
+### instalação Swagger
+```
+composer require symfony/yaml:^6.4
+composer require "darkaonline/l5-swagger"
+```
 

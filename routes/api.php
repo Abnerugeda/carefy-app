@@ -10,5 +10,11 @@ Route::get("/", function () {
         'sucess' => true
     ]);
 });
+Route::get("/hello", function () { 
+    return response()->json([
+        "code" => 200,
+        "message" => 'Hello world'
+    ]);
+});
 
 Route::Post('/pacientes', [PacienteController::class,'createPaciente']);

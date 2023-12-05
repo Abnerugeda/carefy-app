@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Carefy api",
+        "contact": {
+            "email": "devabnerugeda@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/pacientes": {
+            "get": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "colete todas as informações",
+                "description": "Coletar todos os dados de todos os pacientes",
+                "operationId": "67a2883311115dd5978caee65a63e646",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "",
+                "description": "Crie seu paciente",
+                "operationId": "8acfc295905f210a96af583640d5183c",
+                "requestBody": {
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Codigo_Paciente": {
+                                        "type": "integer",
+                                        "example": "1234"
+                                    },
+                                    "Nome": {
+                                        "type": "string",
+                                        "example": "Abner Ugeda"
+                                    },
+                                    "CEP": {
+                                        "type": "string",
+                                        "example": "00000-000"
+                                    },
+                                    "Logradouro": {
+                                        "type": "string",
+                                        "example": "Rua floriano"
+                                    },
+                                    "Bairro": {
+                                        "type": "string",
+                                        "example": "Rua floriano"
+                                    },
+                                    "numero_casa": {
+                                        "type": "integer",
+                                        "example": "123"
+                                    },
+                                    "complemento": {
+                                        "type": "string",
+                                        "example": "apto 71"
+                                    },
+                                    "UF": {
+                                        "type": "string",
+                                        "example": "SP"
+                                    },
+                                    "Data_Nascimento": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-01-01"
+                                    },
+                                    "Telefone": {
+                                        "type": "string",
+                                        "example": "(16) 99792-6503"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso! Usuário foi cadastrado"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "202": {
+                        "description": "Código do paciente já cadastrado"
+                    },
+                    "404": {
+                        "description": "Informações inválidas"
+                    }
+                }
+            }
+        }
+    }
+}
