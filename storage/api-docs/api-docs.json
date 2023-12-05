@@ -106,6 +106,35 @@
                     }
                 }
             }
+        },
+        "/pacientes/{id}": {
+            "get": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "Colete a informação de apenas um Paciente",
+                "description": "Coletar todos os dados de todos os pacientes",
+                "operationId": "13f72d945300ca36d6aa14f2a0373a0a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Paciente não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            }
         }
     }
 }

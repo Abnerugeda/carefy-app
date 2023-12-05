@@ -34,7 +34,39 @@ class PacienteController extends Controller
             $paciente = Pacientes::paginate();
             return PacienteResource::collection($paciente);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+
+    /**
+     * @OA\Get(
+     *     path="/pacientes/{id}",
+     *     summary="Colete a informação de apenas um Paciente",
+     *     tags={"Pacientes"},
+     *     description="Coletar todos os dados de todos os pacientes",
+     *     @OA\Response(response="200", description="Sucesso"),
+     *     @OA\Response(response="202", description="Paciente não encontrado"),
+     *     @OA\Response(response="500", description="Erro no sistema"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Buscar por id",
+     *         required=true,
+     *      ),
+     * )
+     */
+
+    public function getOnePaciente(string $id)
+    {
+        try {
+            $paciente = Pacientes::find($id);
+            if (!$paciente) {
+                return response()->json(['message' => 'Paciente não encontrado'], 202);
+            }
+            return new PacienteResource($paciente);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 
@@ -83,20 +115,10 @@ class PacienteController extends Controller
     public function createPaciente(CreateUpdatePacienteRequest $request)
     {
         try {
-
-            $existingPaciente = Pacientes::where('Codigo_Paciente', $request->input('Codigo_Paciente'))->first();
-
-            if ($existingPaciente) {
-                return response()->json(['message' => 'Paciente já cadastrado.'], 202);
-            }
-
             $paciente = Pacientes::create($request->validated());
             return new PacienteResource($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
-
-
-
 }
