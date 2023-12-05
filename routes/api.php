@@ -11,3 +11,4 @@ Route::get("/", function () {
     ]);
 });
 
+Route::Post('/pacientes', [PacienteController::class,'createPaciente']);
