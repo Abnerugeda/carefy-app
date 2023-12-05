@@ -23,7 +23,7 @@ class CreateUpdatePacienteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'Codigo_Paciente' => [
                 'required',
                 'max:50',
@@ -68,6 +68,15 @@ class CreateUpdatePacienteRequest extends FormRequest
                 'max:15'
             ],
         ];
+
+        if($this->method() === "PUT"){
+            $rules["Codigo_Paciente"] = [
+                'required',
+                'max:50',
+                "unique:pacientes,Codigo_Paciente,{$this->id},id"
+            ];
+        }
+        return $rules;
     }
 
     public function messages()

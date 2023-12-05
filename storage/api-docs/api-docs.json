@@ -134,6 +134,91 @@
                         "description": "Erro no sistema"
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "",
+                "description": "Edite o seu paciente",
+                "operationId": "e48086743d6bf17ed405ebbfce87176f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "UpdatePacienteRequest",
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Codigo_Paciente": {
+                                        "type": "integer",
+                                        "example": "1234"
+                                    },
+                                    "Nome": {
+                                        "type": "string",
+                                        "example": "Abner Ugeda"
+                                    },
+                                    "CEP": {
+                                        "type": "string",
+                                        "example": "00000-000"
+                                    },
+                                    "Logradouro": {
+                                        "type": "string",
+                                        "example": "Rua floriano"
+                                    },
+                                    "Bairro": {
+                                        "type": "string",
+                                        "example": "Rua floriano"
+                                    },
+                                    "numero_casa": {
+                                        "type": "integer",
+                                        "example": "123"
+                                    },
+                                    "complemento": {
+                                        "type": "string",
+                                        "example": "apto 71"
+                                    },
+                                    "UF": {
+                                        "type": "string",
+                                        "example": "SP"
+                                    },
+                                    "Data_Nascimento": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-01-01"
+                                    },
+                                    "Telefone": {
+                                        "type": "string",
+                                        "example": "(16) 99792-6503"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso! Usuário foi cadastrado"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "202": {
+                        "description": "Paciente não encontrado"
+                    },
+                    "404": {
+                        "description": "Informações inválidas"
+                    }
+                }
             }
         }
     }

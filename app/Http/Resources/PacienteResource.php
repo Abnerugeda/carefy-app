@@ -18,7 +18,7 @@ class PacienteResource extends JsonResource
         return [
             "id"=> $this->id,
             'Codigo_Paciente' => $this->Codigo_Paciente ,
-            'Nome' => strtoupper($this->Nome),
+            'Nome' => $this->Nome,
             'CEP' => $this->CEP,
             'Logradouro' => $this->Logradouro,
             'Bairro' => $this->Bairro,

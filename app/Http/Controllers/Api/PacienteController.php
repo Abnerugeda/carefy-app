@@ -121,4 +121,67 @@ class PacienteController extends Controller
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    /**
+     * @OA\Put(
+     * path="/pacientes/{id}",
+     * summary="",
+     * description="Edite o seu paciente",
+     * tags={"Pacientes"},
+     * @OA\RequestBody(
+     *    request="UpdatePacienteRequest",
+     *    required=true,
+     *    description="Insira corretamente todas as informações",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="Codigo_Paciente", type="int", example="1234"),
+     *       @OA\Property(property="Nome", type="string", example="Abner Ugeda"),
+     *       @OA\Property(property="CEP", type="string", example="00000-000"),
+     *       @OA\Property(property="Logradouro", type="string", example="Rua floriano"),
+     *       @OA\Property(property="Bairro", type="string", example="Rua floriano"),
+     *       @OA\Property(property="numero_casa", type="int", example="123"),
+     *       @OA\Property(property="complemento", type="string", example="apto 71"),
+     *       @OA\Property(property="UF", type="string", example="SP"),
+     *       @OA\Property(property="Data_Nascimento", type="date", example="2023-01-01"),
+     *       @OA\Property(property="Telefone", type="string", example="(16) 99792-6503")
+     *    )
+     * ),
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      description="Buscar por id",
+     *      required=true,
+     * ),
+     * @OA\Response(
+     *    response=201,
+     *    description="Sucesso! Usuário foi cadastrado"
+     * ),
+     * @OA\Response(
+     *    response=500,
+     *    description="Erro no sistema"
+     * ),
+     * @OA\Response(
+     *    response=202,
+     *    description="Paciente não encontrado",
+     *    
+     * ),
+     * @OA\Response(
+     *    response=404,
+     *    description="Informações inválidas"
+     * )
+     * )
+     */
+
+    public function updatePaciente(CreateUpdatePacienteRequest $request, string $id)
+    {
+        try {
+            $paciente = Pacientes::find($id);
+            if (!$paciente) {
+                return response()->json(['message' => 'Paciente não encontrado'], 202);
+            }
+            $paciente->update($request->validated());
+            return new PacienteResource($paciente);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
 }
