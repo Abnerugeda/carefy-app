@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUpdatePacienteRequest;
 use App\Http\Resources\PacienteResource;
 use App\Models\Pacientes;
 use Exception;
@@ -68,8 +69,9 @@ class PacienteController extends Controller
      *    description="Erro no sistema"
      * ),
      * @OA\Response(
-     *    response=202,
-     *    description="Código do paciente já cadastrado"
+     *    response=200,
+     *    description="Código do paciente já cadastrado",
+     *    @OA\JsonContent()
      * ),
      * @OA\Response(
      *    response=404,
@@ -78,7 +80,7 @@ class PacienteController extends Controller
      * )
      */
 
-    public function createPaciente(Request $request)
+    public function createPaciente(CreateUpdatePacienteRequest $request)
     {
         try {
 
@@ -88,10 +90,13 @@ class PacienteController extends Controller
                 return response()->json(['message' => 'Paciente já cadastrado.'], 202);
             }
 
-            $paciente = Pacientes::create($request->all());
+            $paciente = Pacientes::create($request->validated());
             return new PacienteResource($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+
+
 }

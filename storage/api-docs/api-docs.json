@@ -93,8 +93,13 @@
                     "500": {
                         "description": "Erro no sistema"
                     },
-                    "202": {
-                        "description": "Código do paciente já cadastrado"
+                    "200": {
+                        "description": "Código do paciente já cadastrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "404": {
                         "description": "Informações inválidas"
