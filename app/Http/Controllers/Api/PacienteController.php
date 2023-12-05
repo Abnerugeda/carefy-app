@@ -9,6 +9,7 @@ use App\Models\Pacientes;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
+use Illuminate\Routing\Route;
 use PhpParser\Node\Stmt\TryCatch;
 
 
@@ -31,7 +32,7 @@ class PacienteController extends Controller
     {
 
         try {
-            $paciente = Pacientes::paginate();
+            $paciente = Pacientes::where('data_exclusao', '=', null)->paginate();
             return PacienteResource::collection($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
@@ -173,7 +174,7 @@ class PacienteController extends Controller
 
     public function updatePaciente(CreateUpdatePacienteRequest $request, string $id)
     {
-        try {
+        try {            
             $paciente = Pacientes::find($id);
             if (!$paciente) {
                 return response()->json(['message' => 'Paciente não encontrado'], 202);

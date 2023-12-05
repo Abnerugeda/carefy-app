@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('pacientes', function (Blueprint $table) {
+            $table->date('data_exclusao')->nullable();
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('pacientes', function (Blueprint $table) {
+            $table->dropColumn('data_exclusao');
+        });
     }
 };

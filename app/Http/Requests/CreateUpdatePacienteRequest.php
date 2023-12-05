@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class CreateUpdatePacienteRequest extends FormRequest
 {
@@ -23,6 +25,7 @@ class CreateUpdatePacienteRequest extends FormRequest
      */
     public function rules(): array
     {
+
         $rules = [
             'Codigo_Paciente' => [
                 'required',
@@ -68,12 +71,11 @@ class CreateUpdatePacienteRequest extends FormRequest
                 'max:15'
             ],
         ];
-
         if($this->method() === "PUT"){
             $rules["Codigo_Paciente"] = [
                 'required',
                 'max:50',
-                "unique:pacientes,Codigo_Paciente,{$this->id},id"
+                Rule::unique('pacientes')->ignore($this->id)
             ];
         }
         return $rules;

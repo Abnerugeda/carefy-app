@@ -13,5 +13,6 @@ Route::get("/", function () {
 Route::get('/pacientes/{id}', [PacienteController::class, "getOnePaciente"]);
 Route::get("/pacientes", [PacienteController::class,"getAllPacientes"]);
 Route::put("/pacientes/{id}", [PacienteController::class, "updatePaciente"]);
+// Route::delete("/pacientes/{}")
 Route::Post('/pacientes', [PacienteController::class,'createPaciente']);
 
