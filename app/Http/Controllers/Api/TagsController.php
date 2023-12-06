@@ -26,7 +26,7 @@ class TagsController extends Controller
     public function getAllTags()
     {
         try {
-            $tags = Tags::paginate();
+            $tags = Tags::where('data_exclusao', '=', null)->paginate();
             return TagsResource::collection($tags);
         } catch (Exception $e) {
             return response()->json(["message" => $e->getMessage()], 500);
@@ -66,7 +66,7 @@ class TagsController extends Controller
         }
     }
 
-     /**
+    /**
      * @OA\Get(
      *     path="/tags/codigo/{codigo}",
      *     summary="Colete a informação de apenas uma Tag pelo Código de Tag",
@@ -84,11 +84,12 @@ class TagsController extends Controller
      * )
      */
 
-    public function getWithCode(string $codigo){
+    public function getWithCode(string $codigo)
+    {
         try {
             $tags = Tags::where('Codigo_Tag', "=", $codigo)->first();
             if (!$tags) {
-                return response()->json(['message' => 'Tag não encontrada', "codigo"=>$codigo], 202);
+                return response()->json(['message' => 'Tag não encontrada', "codigo" => $codigo], 202);
             }
             return new TagsResource($tags);
         } catch (Exception $e) {
@@ -96,7 +97,7 @@ class TagsController extends Controller
         }
     }
 
-     /**
+    /**
      * @OA\Post(
      * path="/tags",
      * summary="",
@@ -132,11 +133,12 @@ class TagsController extends Controller
      * )
      */
 
-    public function createTags(CreateUpdateTagsRequest $request){
-        try{
+    public function createTags(CreateUpdateTagsRequest $request)
+    {
+        try {
             $tags = Tags::create($request->validated());
             return new TagsResource($tags);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
@@ -186,18 +188,51 @@ class TagsController extends Controller
      * )
      * )
      */
-    public function updateTags(CreateUpdateTagsRequest $request, string $id){
-        try{
+    public function updateTags(CreateUpdateTagsRequest $request, string $id)
+    {
+        try {
             $tags = Tags::find($id);
             if (!$tags) {
                 return response()->json(['message' => 'Tag não encontrada'], 202);
             }
             $tags->update($request->validated());
             return new TagsResource($tags);
-        }catch(Exception $e){
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+
+    /**
+     * @OA\Delete(
+     *     path="/tags/{id}",
+     *     summary="Delete uma tag",
+     *     tags={"Tags"},
+     *     description="Deletar tag por id",
+     *     @OA\Response(response="200", description="Sucesso"),
+     *     @OA\Response(response="202", description="Tag não encontrada"),
+     *     @OA\Response(response="500", description="Erro no sistema"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Deletar por id",
+     *         required=true,
+     *      ),
+     * )
+     */
+
+    public function deleteTags(string $id)
+    {
+        try {
+            $tags = Tags::find($id);
+            if (!$tags) {
+                return response()->json(['message' => 'Tag não encontrada'], 202);
+            }
+            $tags->data_exclusao = now();
+            $tags->save();
+            return response()->json(['message'=> "Paciente deletado com sucesso!", "teste"=>now()], 200);
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 }
-
-

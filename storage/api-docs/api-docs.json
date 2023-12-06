@@ -224,8 +224,8 @@
                 "tags": [
                     "Pacientes"
                 ],
-                "summary": "Colete a informação de apenas um Paciente",
-                "description": "Coletar todos os dados de todos os pacientes",
+                "summary": "Delete um paciente",
+                "description": "Deletar paciente por id",
                 "operationId": "d8876ee67937bc8fb44837f474b23a03",
                 "parameters": [
                     {
@@ -414,6 +414,33 @@
                     },
                     "404": {
                         "description": "Informações inválidas"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Delete uma tag",
+                "description": "Deletar tag por id",
+                "operationId": "0fac10866b7031648ec32bbd39b5785b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Deletar por id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Tag não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
                     }
                 }
             }

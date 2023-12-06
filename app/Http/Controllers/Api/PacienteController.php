@@ -190,9 +190,9 @@ class PacienteController extends Controller
      /**
      * @OA\Delete(
      *     path="/pacientes/{id}",
-     *     summary="Colete a informação de apenas um Paciente",
+     *     summary="Delete um paciente",
      *     tags={"Pacientes"},
-     *     description="Coletar todos os dados de todos os pacientes",
+     *     description="Deletar paciente por id",
      *     @OA\Response(response="200", description="Sucesso"),
      *     @OA\Response(response="202", description="Paciente não encontrado"),
      *     @OA\Response(response="500", description="Erro no sistema"),
@@ -212,7 +212,8 @@ class PacienteController extends Controller
             if (!$paciente) {
                 return response()->json(['message' => 'Paciente não encontrado'], 202);
             }
-            $paciente->update(['data_exclusao' => now()]);
+            $paciente->data_exclusao = now();
+            $paciente->save();
             return response()->json(['message'=> "Paciente deletado com sucesso!"], 200);
         }catch(Exception $e){
             return response()->json(['message'=> $e->getMessage()], 500);
