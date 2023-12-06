@@ -12,7 +12,7 @@ class Tags extends Model
 
     public function pacientes()
     {
-        return $this->belongsToMany(Pacientes::class, 'tags_pacientes', 'Codigo_Tag', 'Codigo_Paciente');
+        return $this->belongsToMany(Pacientes::class, 'tags_paciente', 'Codigo_Tag', 'Codigo_Paciente');
     }
 
     protected $casts = [

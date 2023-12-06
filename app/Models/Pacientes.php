@@ -15,7 +15,7 @@ class Pacientes extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tags::class, 'tags_pacientes', 'Codigo_Paciente', 'Codigo_Tag');
+        return $this->belongsToMany(Tags::class, 'tags_paciente', 'Codigo_Paciente', 'Codigo_Tag');
     }
 
 

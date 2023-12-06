@@ -444,6 +444,171 @@
                     }
                 }
             }
+        },
+        "/tagsPaciente": {
+            "get": {
+                "tags": [
+                    "TagsPaciente"
+                ],
+                "summary": "colete todas as informações",
+                "description": "Coletar todos os dados de todos as Tags vinculadas com o paciente",
+                "operationId": "927b598778f64f55183a5dfd7d6245f4",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TagsPaciente"
+                ],
+                "summary": "",
+                "description": "Vincule sua tag ao seu paciente",
+                "operationId": "c042a3bcc7175cba2b1a8e4aca8acf39",
+                "requestBody": {
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Codigo_Tag": {
+                                        "type": "string",
+                                        "example": "a123"
+                                    },
+                                    "Codigo_Paciente": {
+                                        "type": "string",
+                                        "example": "a123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso!"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "404": {
+                        "description": "Informações inválidas"
+                    }
+                }
+            }
+        },
+        "/tagsPaciente/{id}": {
+            "get": {
+                "tags": [
+                    "TagsPaciente"
+                ],
+                "summary": "Colete a informação de apenas uma Tag vinculada ao paciente pelo id",
+                "description": "Coletar os dados de uma tag paciente pelo seu id",
+                "operationId": "7485d43b4800371f5f0721588fbeabe0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id ",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Tag Paciente não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TagsPaciente"
+                ],
+                "summary": "",
+                "description": "Edite sua tag ao seu . O codigo da tag e do paciente deve existir para que funcione.",
+                "operationId": "2840821dba9af7c92c12d07596941eab",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id ",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Codigo_Tag": {
+                                        "type": "string",
+                                        "example": "a123"
+                                    },
+                                    "Codigo_Paciente": {
+                                        "type": "string",
+                                        "example": "a123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso!"
+                    },
+                    "202": {
+                        "description": "Sucesso!"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "404": {
+                        "description": "Informações inválidas"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TagsPaciente"
+                ],
+                "summary": "Delete uma Tag vinculada ao paciente pelo id",
+                "description": "Deletar tag paciente pelo id",
+                "operationId": "802350f7f6d55758a56c659d4845a68e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Deletar por id ",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Tag Paciente não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            }
         }
     }
 }
