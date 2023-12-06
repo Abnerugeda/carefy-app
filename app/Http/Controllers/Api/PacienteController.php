@@ -45,7 +45,7 @@ class PacienteController extends Controller
      *     path="/pacientes/{id}",
      *     summary="Colete a informação de apenas um Paciente",
      *     tags={"Pacientes"},
-     *     description="Coletar todos os dados de todos os pacientes",
+     *     description="Coletar todos os dados de um paciente pelo seu id",
      *     @OA\Response(response="200", description="Sucesso"),
      *     @OA\Response(response="202", description="Paciente não encontrado"),
      *     @OA\Response(response="500", description="Erro no sistema"),
@@ -183,6 +183,39 @@ class PacienteController extends Controller
             return new PacienteResource($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    
+     /**
+     * @OA\Delete(
+     *     path="/pacientes/{id}",
+     *     summary="Colete a informação de apenas um Paciente",
+     *     tags={"Pacientes"},
+     *     description="Coletar todos os dados de todos os pacientes",
+     *     @OA\Response(response="200", description="Sucesso"),
+     *     @OA\Response(response="202", description="Paciente não encontrado"),
+     *     @OA\Response(response="500", description="Erro no sistema"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Buscar por id",
+     *         required=true,
+     *      ),
+     * )
+     */
+
+
+    public function deletePaciente(string $id){
+        try {
+            $paciente = Pacientes::find($id);
+            if (!$paciente) {
+                return response()->json(['message' => 'Paciente não encontrado'], 202);
+            }
+            $paciente->update(['data_exclusao' => now()]);
+            return response()->json(['message'=> "Paciente deletado com sucesso!"], 200);
+        }catch(Exception $e){
+            return response()->json(['message'=> $e->getMessage()], 500);
         }
     }
 }

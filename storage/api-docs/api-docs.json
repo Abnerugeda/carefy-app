@@ -113,7 +113,7 @@
                     "Pacientes"
                 ],
                 "summary": "Colete a informação de apenas um Paciente",
-                "description": "Coletar todos os dados de todos os pacientes",
+                "description": "Coletar todos os dados de um paciente pelo seu id",
                 "operationId": "13f72d945300ca36d6aa14f2a0373a0a",
                 "parameters": [
                     {
@@ -217,6 +217,109 @@
                     },
                     "404": {
                         "description": "Informações inválidas"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "Colete a informação de apenas um Paciente",
+                "description": "Coletar todos os dados de todos os pacientes",
+                "operationId": "d8876ee67937bc8fb44837f474b23a03",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Paciente não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            }
+        },
+        "/tags": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "colete todas as informações",
+                "description": "Coletar todos os dados de todos as Tags",
+                "operationId": "a411cff9cc7ba5ef475fb340fe358295",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            }
+        },
+        "/tags/{id}": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Colete a informação de apenas uma Tag",
+                "description": "Coletar os dados de uma Tag pelo seu id",
+                "operationId": "d21879d535a01e762ff8f5d6d40a56d0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Tag não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            }
+        },
+        "/tags/{codigo}": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Colete a informação de apenas uma Tag pelo Código de Tag",
+                "description": "Coletar os dados de uma tag pelo seu código",
+                "operationId": "429b8221140ddda1101c7d103272adae",
+                "parameters": [
+                    {
+                        "name": "codigo",
+                        "in": "path",
+                        "description": "Buscar por codigo da tag",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "202": {
+                        "description": "Tag não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
                     }
                 }
             }
