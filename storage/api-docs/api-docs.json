@@ -349,6 +349,73 @@
                         "description": "Erro no sistema"
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "",
+                "description": "Crie sua tag",
+                "operationId": "3b3a9d81c81e84e4fea701bb1de62d6c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar por id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Codigo_Tag": {
+                                        "type": "string",
+                                        "example": "a123"
+                                    },
+                                    "Nome": {
+                                        "type": "string",
+                                        "example": "Tag 1"
+                                    },
+                                    "Cor": {
+                                        "type": "string",
+                                        "example": "#ffffff"
+                                    },
+                                    "Descricao": {
+                                        "type": "string",
+                                        "example": "Tag exemplo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso! Tag foi cadastrada"
+                    },
+                    "202": {
+                        "description": "Tag não encontrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "200": {
+                        "description": "Código da tag já cadastrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Informações inválidas"
+                    }
+                }
             }
         },
         "/tags/codigo/{codigo}": {

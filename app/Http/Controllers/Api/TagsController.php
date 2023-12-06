@@ -140,6 +140,64 @@ class TagsController extends Controller
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    /**
+     * @OA\Put(
+     * path="/tags/{id}",
+     * summary="",
+     * description="Crie sua tag",
+     * tags={"Tags"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Insira corretamente todas as informações",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="Codigo_Tag", type="string", example="a123"),
+     *       @OA\Property(property="Nome", type="string", example="Tag 1"),
+     *       @OA\Property(property="Cor", type="string", example="#ffffff"),
+     *       @OA\Property(property="Descricao", type="string", example="Tag exemplo"),
+     *    )
+     * ),
+     * @OA\Parameter(
+     *    name="id",
+     *    in="path",
+     *    description="Buscar por id",
+     *    required=true,
+     * ),
+     * @OA\Response(
+     *    response=201,
+     *    description="Sucesso! Tag foi cadastrada"
+     * ),
+     * @OA\Response(
+     *    response=202,
+     *    description="Tag não encontrada"
+     * ),
+     * @OA\Response(
+     *    response=500,
+     *    description="Erro no sistema"
+     * ),
+     * @OA\Response(
+     *    response=200,
+     *    description="Código da tag já cadastrada",
+     *    @OA\JsonContent()
+     * ),
+     * @OA\Response(
+     *    response=404,
+     *    description="Informações inválidas"
+     * )
+     * )
+     */
+    public function updateTags(CreateUpdateTagsRequest $request, string $id){
+        try{
+            $tags = Tags::find($id);
+            if (!$tags) {
+                return response()->json(['message' => 'Tag não encontrada'], 202);
+            }
+            $tags->update($request->validated());
+            return new TagsResource($tags);
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
 }
 
 
