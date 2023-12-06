@@ -248,6 +248,46 @@
                 }
             }
         },
+        "/pesquisarPaciente": {
+            "post": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "",
+                "description": "Digite o termo necessario para realizar a sua consulta, qualquer informação é bem aceita.",
+                "operationId": "9cd32fffff8adf56ac84802f8d9fb667",
+                "requestBody": {
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "termo": {
+                                        "type": "string",
+                                        "example": "Abner"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "200": {
+                        "description": "Código do paciente já cadastrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/tags": {
             "get": {
                 "tags": [

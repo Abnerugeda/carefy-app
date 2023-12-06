@@ -71,6 +71,47 @@ class PacienteController extends Controller
         }
     }
 
+     /**
+     * @OA\Post(
+     * path="/pesquisarPaciente",
+     * summary="",
+     * description="Digite o termo necessario para realizar a sua consulta, qualquer informação é bem aceita.",
+     * tags={"Pacientes"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Insira corretamente todas as informações",
+     *    @OA\JsonContent(
+     *      @OA\Property(property="termo", type="string", example="Abner")
+     *    )
+     * ),
+     * @OA\Response(
+     *    response=500,
+     *    description="Erro no sistema"
+     * ),
+     * @OA\Response(
+     *    response=200,
+     *    description="Código do paciente já cadastrado",
+     *    @OA\JsonContent()
+     * ),
+     * )
+     */
+    
+    public function pesquisarPaciente(Request $request){
+        try {
+            $termoPesquisa = $request->input('termo');
+            $pacientes = Pacientes::where(function ($query) use ($termoPesquisa) {
+                $query->where('Nome', 'like', "%$termoPesquisa%")
+                    ->orWhere('Codigo_Paciente', 'like', "%$termoPesquisa%")
+                    ->orWhere('Telefone', 'like', "%$termoPesquisa%")
+                    ->orWhere('Data_Nascimento', 'like', "%$termoPesquisa%");
+            })
+            ->whereNull('data_exclusao')
+            ->get();
+            return PacienteResource::collection($pacientes);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
     /**
      * @OA\Post(
      * path="/pacientes",

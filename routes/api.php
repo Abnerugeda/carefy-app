@@ -17,6 +17,7 @@ Route::get("/pacientes", [PacienteController::class,"getAllPacientes"]);
 Route::get('/pacientes/{codigo}', [PacienteController::class, "getOnePaciente"]);
 Route::put("/pacientes/{codigo}", [PacienteController::class, "updatePaciente"]);
 Route::delete("/pacientes/{codigo}", [PacienteController::class,"deletePaciente"]);
+Route::post('/pesquisarPaciente', [PacienteController::class,'pesquisarPaciente']);
 Route::post('/pacientes', [PacienteController::class,'createPaciente']);
 
 //Endpoints Tags
