@@ -107,19 +107,19 @@
                 }
             }
         },
-        "/pacientes/{id}": {
+        "/pacientes/{codigo}": {
             "get": {
                 "tags": [
                     "Pacientes"
                 ],
                 "summary": "Colete a informação de apenas um Paciente",
-                "description": "Coletar todos os dados de um paciente pelo seu id",
-                "operationId": "13f72d945300ca36d6aa14f2a0373a0a",
+                "description": "Coletar todos os dados de um paciente pelo seu codigo",
+                "operationId": "a319085796387068730e3a8e0b0e730e",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por id",
+                        "description": "Buscar por codigo",
                         "required": true
                     }
                 ],
@@ -141,12 +141,12 @@
                 ],
                 "summary": "",
                 "description": "Edite o seu paciente",
-                "operationId": "e48086743d6bf17ed405ebbfce87176f",
+                "operationId": "2502b2213bf304a2d328527092131536",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por id",
+                        "description": "Buscar por codigo",
                         "required": true
                     }
                 ],
@@ -225,13 +225,13 @@
                     "Pacientes"
                 ],
                 "summary": "Delete um paciente",
-                "description": "Deletar paciente por id",
-                "operationId": "d8876ee67937bc8fb44837f474b23a03",
+                "description": "Deletar paciente por codigo",
+                "operationId": "9ff3d521a731021174cdb21fe380bfdf",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por id",
+                        "description": "Buscar por codigo",
                         "required": true
                     }
                 ],

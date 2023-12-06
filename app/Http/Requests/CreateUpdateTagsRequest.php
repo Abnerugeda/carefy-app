@@ -48,7 +48,7 @@ class CreateUpdateTagsRequest extends FormRequest
             $rules["Codigo_Tag"] = [
                 'required',
                 'max:50',
-                Rule::unique('tags')->ignore($this->id)
+                Rule::unique('tags')->ignore($this->codigo)
             ];
         }
         

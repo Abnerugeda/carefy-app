@@ -42,26 +42,26 @@ class PacienteController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/pacientes/{id}",
+     *     path="/pacientes/{codigo}",
      *     summary="Colete a informação de apenas um Paciente",
      *     tags={"Pacientes"},
-     *     description="Coletar todos os dados de um paciente pelo seu id",
+     *     description="Coletar todos os dados de um paciente pelo seu codigo",
      *     @OA\Response(response="200", description="Sucesso"),
      *     @OA\Response(response="202", description="Paciente não encontrado"),
      *     @OA\Response(response="500", description="Erro no sistema"),
      *     @OA\Parameter(
-     *         name="id",
+     *         name="codigo",
      *         in="path",
-     *         description="Buscar por id",
+     *         description="Buscar por codigo",
      *         required=true,
      *      ),
      * )
      */
 
-    public function getOnePaciente(string $id)
+    public function getOnePaciente(string $codigo)
     {
         try {
-            $paciente = Pacientes::find($id);
+            $paciente = Pacientes::where("Codigo_Paciente", "=", $codigo)->first();
             if (!$paciente) {
                 return response()->json(['message' => 'Paciente não encontrado'], 202);
             }
@@ -125,7 +125,7 @@ class PacienteController extends Controller
 
     /**
      * @OA\Put(
-     * path="/pacientes/{id}",
+     * path="/pacientes/{codigo}",
      * summary="",
      * description="Edite o seu paciente",
      * tags={"Pacientes"},
@@ -147,14 +147,14 @@ class PacienteController extends Controller
      *    )
      * ),
      *  @OA\Parameter(
-     *      name="id",
+     *      name="codigo",
      *      in="path",
-     *      description="Buscar por id",
+     *      description="Buscar por codigo",
      *      required=true,
      * ),
      * @OA\Response(
      *    response=201,
-     *    description="Sucesso! Usuário foi cadastrado"
+     *    description="Sucesso! Paciente foi editado"
      * ),
      * @OA\Response(
      *    response=500,
@@ -172,10 +172,10 @@ class PacienteController extends Controller
      * )
      */
 
-    public function updatePaciente(CreateUpdatePacienteRequest $request, string $id)
+    public function updatePaciente(CreateUpdatePacienteRequest $request, string $codigo)
     {
         try {            
-            $paciente = Pacientes::find($id);
+            $paciente = Pacientes::where("Codigo_Paciente", "=", $codigo)->first();
             if (!$paciente) {
                 return response()->json(['message' => 'Paciente não encontrado'], 202);
             }
@@ -189,26 +189,26 @@ class PacienteController extends Controller
     
      /**
      * @OA\Delete(
-     *     path="/pacientes/{id}",
+     *     path="/pacientes/{codigo}",
      *     summary="Delete um paciente",
      *     tags={"Pacientes"},
-     *     description="Deletar paciente por id",
+     *     description="Deletar paciente por codigo",
      *     @OA\Response(response="200", description="Sucesso"),
      *     @OA\Response(response="202", description="Paciente não encontrado"),
      *     @OA\Response(response="500", description="Erro no sistema"),
      *     @OA\Parameter(
-     *         name="id",
+     *         name="codigo",
      *         in="path",
-     *         description="Buscar por id",
+     *         description="Deletar por codigo",
      *         required=true,
      *      ),
      * )
      */
 
 
-    public function deletePaciente(string $id){
+    public function deletePaciente(string $codigo){
         try {
-            $paciente = Pacientes::find($id);
+            $paciente = Pacientes::where("Codigo_Paciente", "=", $codigo)->first();
             if (!$paciente) {
                 return response()->json(['message' => 'Paciente não encontrado'], 202);
             }

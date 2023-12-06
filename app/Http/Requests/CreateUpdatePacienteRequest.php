@@ -75,7 +75,7 @@ class CreateUpdatePacienteRequest extends FormRequest
             $rules["Codigo_Paciente"] = [
                 'required',
                 'max:50',
-                Rule::unique('pacientes')->ignore($this->id)
+                Rule::unique('pacientes')->ignore($this->codigo, 'Codigo_Paciente')
             ];
         }
         return $rules;

@@ -13,15 +13,15 @@ Route::get("/", function () {
 
 //Endpoints Pacientes
 Route::get("/pacientes", [PacienteController::class,"getAllPacientes"]);
-Route::get('/pacientes/{id}', [PacienteController::class, "getOnePaciente"]);
-Route::put("/pacientes/{id}", [PacienteController::class, "updatePaciente"]);
-Route::delete("/pacientes/{id}", [PacienteController::class,"deletePaciente"]);
+Route::get('/pacientes/{codigo}', [PacienteController::class, "getOnePaciente"]);
+Route::put("/pacientes/{codigo}", [PacienteController::class, "updatePaciente"]);
+Route::delete("/pacientes/{codigo}", [PacienteController::class,"deletePaciente"]);
 Route::post('/pacientes', [PacienteController::class,'createPaciente']);
 
 //Endpoints Tags
 Route::get("/tags", [TagsController::class,"getAllTags"]);
-Route::get("/tags/{id}", [TagsController::class, "getOneTags"]);
+Route::get("/tags/{codigo}", [TagsController::class, "getOneTags"]);
 Route::get("/tags/codigo/{codigo}", [TagsController::class,"getWithCode"]);
 Route::post("/tags", [TagsController::class, "createTags"]);
-Route::put("/tags/{id}", [TagsController::class, "updateTags"]);
-Route::delete("/tags/{id}", [TagsController::class,"deleteTags"]);
+Route::put("/tags/{codigo}", [TagsController::class, "updateTags"]);
+Route::delete("/tags/{codigo}", [TagsController::class,"deleteTags"]);
