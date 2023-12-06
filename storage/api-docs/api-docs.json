@@ -264,6 +264,62 @@
                         "description": "Erro no sistema"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "",
+                "description": "Crie sua tag",
+                "operationId": "95186089f9d24c87b4f7035f8995e64f",
+                "requestBody": {
+                    "description": "Insira corretamente todas as informações",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Codigo_Tag": {
+                                        "type": "string",
+                                        "example": "a123"
+                                    },
+                                    "Nome": {
+                                        "type": "string",
+                                        "example": "Tag 1"
+                                    },
+                                    "Cor": {
+                                        "type": "string",
+                                        "example": "#ffffff"
+                                    },
+                                    "Descricao": {
+                                        "type": "string",
+                                        "example": "Tag exemplo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso! Tag foi cadastrada"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    },
+                    "200": {
+                        "description": "Código da tag já cadastrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Informações inválidas"
+                    }
+                }
             }
         },
         "/tags/{id}": {
@@ -295,14 +351,14 @@
                 }
             }
         },
-        "/tags/{codigo}": {
+        "/tags/codigo/{codigo}": {
             "get": {
                 "tags": [
                     "Tags"
                 ],
                 "summary": "Colete a informação de apenas uma Tag pelo Código de Tag",
                 "description": "Coletar os dados de uma tag pelo seu código",
-                "operationId": "429b8221140ddda1101c7d103272adae",
+                "operationId": "bfcabdf891b68d80ce91940ac443b5b2",
                 "parameters": [
                     {
                         "name": "codigo",

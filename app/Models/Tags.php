@@ -11,7 +11,7 @@ class Tags extends Model
 
     protected $fillable = [
         "Nome",
-        "Codigo_Tags",
+        "Codigo_Tag",
         "Cor",
         "Descricao"
     ];
