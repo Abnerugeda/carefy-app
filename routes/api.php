@@ -21,7 +21,6 @@ Route::post('/pacientes', [PacienteController::class,'createPaciente']);
 //Endpoints Tags
 Route::get("/tags", [TagsController::class,"getAllTags"]);
 Route::get("/tags/{codigo}", [TagsController::class, "getOneTags"]);
-Route::get("/tags/codigo/{codigo}", [TagsController::class,"getWithCode"]);
 Route::post("/tags", [TagsController::class, "createTags"]);
 Route::put("/tags/{codigo}", [TagsController::class, "updateTags"]);
 Route::delete("/tags/{codigo}", [TagsController::class,"deleteTags"]);

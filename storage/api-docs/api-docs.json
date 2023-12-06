@@ -207,7 +207,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Sucesso! Usuário foi cadastrado"
+                        "description": "Sucesso! Paciente foi editado"
                     },
                     "500": {
                         "description": "Erro no sistema"
@@ -231,7 +231,7 @@
                     {
                         "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por codigo",
+                        "description": "Deletar por codigo",
                         "required": true
                     }
                 ],
@@ -322,19 +322,19 @@
                 }
             }
         },
-        "/tags/{id}": {
+        "/tags/{codigo}": {
             "get": {
                 "tags": [
                     "Tags"
                 ],
-                "summary": "Colete a informação de apenas uma Tag",
-                "description": "Coletar os dados de uma Tag pelo seu id",
-                "operationId": "d21879d535a01e762ff8f5d6d40a56d0",
+                "summary": "Colete a informação de apenas uma Tag pelo Código de Tag",
+                "description": "Coletar os dados de uma tag pelo seu código",
+                "operationId": "02943b6ae8219bbcc8e7865414555673",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por id",
+                        "description": "Buscar por codigo da tag",
                         "required": true
                     }
                 ],
@@ -356,12 +356,12 @@
                 ],
                 "summary": "",
                 "description": "Crie sua tag",
-                "operationId": "3b3a9d81c81e84e4fea701bb1de62d6c",
+                "operationId": "2b89aa0c62687d3146fd59064f2e7c96",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por id",
+                        "description": "Buscar por codigo",
                         "required": true
                     }
                 ],
@@ -422,42 +422,13 @@
                     "Tags"
                 ],
                 "summary": "Delete uma tag",
-                "description": "Deletar tag por id",
-                "operationId": "0fac10866b7031648ec32bbd39b5785b",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Deletar por id",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sucesso"
-                    },
-                    "202": {
-                        "description": "Tag não encontrada"
-                    },
-                    "500": {
-                        "description": "Erro no sistema"
-                    }
-                }
-            }
-        },
-        "/tags/codigo/{codigo}": {
-            "get": {
-                "tags": [
-                    "Tags"
-                ],
-                "summary": "Colete a informação de apenas uma Tag pelo Código de Tag",
-                "description": "Coletar os dados de uma tag pelo seu código",
-                "operationId": "bfcabdf891b68d80ce91940ac443b5b2",
+                "description": "Deletar tag por codigo",
+                "operationId": "4539057184992cf6f808cbc8218ba780",
                 "parameters": [
                     {
                         "name": "codigo",
                         "in": "path",
-                        "description": "Buscar por codigo da tag",
+                        "description": "Deletar por codigo",
                         "required": true
                     }
                 ],

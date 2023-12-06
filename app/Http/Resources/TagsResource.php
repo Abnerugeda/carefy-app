@@ -13,7 +13,12 @@ class TagsResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
-        return parent::toArray($request);
+    {        
+        return [
+            "Codigo_Tag" => $this->Codigo_Tag,
+            "Nome" => $this->Nome,
+            "Cor" => $this->Cor,
+            "Descricao" => $this->Descricao,
+        ];
     }
 }

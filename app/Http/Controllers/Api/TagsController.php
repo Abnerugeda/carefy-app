@@ -37,38 +37,7 @@ class TagsController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/tags/{id}",
-     *     summary="Colete a informação de apenas uma Tag",
-     *     tags={"Tags"},
-     *     description="Coletar os dados de uma Tag pelo seu id",
-     *     @OA\Response(response="200", description="Sucesso"),
-     *     @OA\Response(response="202", description="Tag não encontrada"),
-     *     @OA\Response(response="500", description="Erro no sistema"),
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Buscar por id",
-     *         required=true,
-     *      ),
-     * )
-     */
-
-    public function getOneTags(string $id)
-    {
-        try {
-            $tags = Tags::find($id);
-            if (!$tags) {
-                return response()->json(['message' => 'Tag não encontrada'], 202);
-            }
-            return new TagsResource($tags);
-        } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
-        }
-    }
-
-    /**
-     * @OA\Get(
-     *     path="/tags/codigo/{codigo}",
+     *     path="/tags/{codigo}",
      *     summary="Colete a informação de apenas uma Tag pelo Código de Tag",
      *     tags={"Tags"},
      *     description="Coletar os dados de uma tag pelo seu código",
@@ -84,7 +53,7 @@ class TagsController extends Controller
      * )
      */
 
-    public function getWithCode(string $codigo)
+    public function getOneTags(string $codigo)
     {
         try {
             $tags = Tags::where('Codigo_Tag', "=", $codigo)->first();
@@ -145,7 +114,7 @@ class TagsController extends Controller
 
     /**
      * @OA\Put(
-     * path="/tags/{id}",
+     * path="/tags/{codigo}",
      * summary="",
      * description="Crie sua tag",
      * tags={"Tags"},
@@ -160,9 +129,9 @@ class TagsController extends Controller
      *    )
      * ),
      * @OA\Parameter(
-     *    name="id",
+     *    name="codigo",
      *    in="path",
-     *    description="Buscar por id",
+     *    description="Buscar por codigo",
      *    required=true,
      * ),
      * @OA\Response(
@@ -188,10 +157,10 @@ class TagsController extends Controller
      * )
      * )
      */
-    public function updateTags(CreateUpdateTagsRequest $request, string $id)
+    public function updateTags(CreateUpdateTagsRequest $request, string $codigo)
     {
         try {
-            $tags = Tags::find($id);
+            $tags = Tags::where("Codigo_Tag", "=", $codigo)->first();
             if (!$tags) {
                 return response()->json(['message' => 'Tag não encontrada'], 202);
             }
@@ -205,26 +174,26 @@ class TagsController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/tags/{id}",
+     *     path="/tags/{codigo}",
      *     summary="Delete uma tag",
      *     tags={"Tags"},
-     *     description="Deletar tag por id",
+     *     description="Deletar tag por codigo",
      *     @OA\Response(response="200", description="Sucesso"),
      *     @OA\Response(response="202", description="Tag não encontrada"),
      *     @OA\Response(response="500", description="Erro no sistema"),
      *     @OA\Parameter(
-     *         name="id",
+     *         name="codigo",
      *         in="path",
-     *         description="Deletar por id",
+     *         description="Deletar por codigo",
      *         required=true,
      *      ),
      * )
      */
 
-    public function deleteTags(string $id)
+    public function deleteTags(string $codigo)
     {
         try {
-            $tags = Tags::find($id);
+            $tags = Tags::where("Codigo_Tag", "=", $codigo)->first();
             if (!$tags) {
                 return response()->json(['message' => 'Tag não encontrada'], 202);
             }
