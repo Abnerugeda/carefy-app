@@ -26,6 +26,7 @@ class PacienteResource extends JsonResource
             'UF'=> $this->UF,
             'Data_Nascimento' => Carbon::make($this->Data_Nascimento)->format('d/m/Y'),
             'Telefone' => $this->Telefone,
+            'Tags' => $this->tags 
         ];
     }
 }

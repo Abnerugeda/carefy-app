@@ -32,7 +32,8 @@ class PacienteController extends Controller
     {
 
         try {
-            $paciente = Pacientes::where('data_exclusao', '=', null)->paginate();
+            $paciente = Pacientes::where('data_exclusao', '=', null)->with('tags')->paginate();
+
             return PacienteResource::collection($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
