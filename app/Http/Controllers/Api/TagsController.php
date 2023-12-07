@@ -91,7 +91,7 @@ class TagsController extends Controller
      *    description="Erro no sistema"
      * ),
      * @OA\Response(
-     *    response=200,
+     *    response=203,
      *    description="Código da tag já cadastrada",
      *    @OA\JsonContent()
      * ),
