@@ -90,7 +90,7 @@ class CreateUpdatePacienteRequest extends FormRequest
 
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
-        $response = new Response(['message' => $validator->errors()->first()], 200);
+        $response = new Response(['message' => $validator->errors()->first()], 203);
         throw new ValidationException($validator, $response);
     }
 }

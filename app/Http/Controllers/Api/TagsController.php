@@ -135,7 +135,7 @@ class TagsController extends Controller
      *    required=true,
      * ),
      * @OA\Response(
-     *    response=201,
+     *    response=200,
      *    description="Sucesso! Tag foi cadastrada"
      * ),
      * @OA\Response(
@@ -147,7 +147,7 @@ class TagsController extends Controller
      *    description="Erro no sistema"
      * ),
      * @OA\Response(
-     *    response=200,
+     *    response=203,
      *    description="Código da tag já cadastrada",
      *    @OA\JsonContent()
      * ),

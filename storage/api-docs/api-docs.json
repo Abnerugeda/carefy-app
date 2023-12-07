@@ -206,8 +206,11 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "Sucesso! Paciente foi editado"
+                    },
+                    "203": {
+                        "description": "Código já cadastrado em outro paciente"
                     },
                     "500": {
                         "description": "Erro no sistema"
@@ -435,7 +438,7 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "Sucesso! Tag foi cadastrada"
                     },
                     "202": {
@@ -444,7 +447,7 @@
                     "500": {
                         "description": "Erro no sistema"
                     },
-                    "200": {
+                    "203": {
                         "description": "Código da tag já cadastrada",
                         "content": {
                             "application/json": {

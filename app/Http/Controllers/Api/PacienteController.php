@@ -194,8 +194,12 @@ class PacienteController extends Controller
      *      required=true,
      * ),
      * @OA\Response(
-     *    response=201,
+     *    response=200,
      *    description="Sucesso! Paciente foi editado"
+     * ),
+     *  @OA\Response(
+     *    response=203,
+     *    description="Código já cadastrado em outro paciente"
      * ),
      * @OA\Response(
      *    response=500,
