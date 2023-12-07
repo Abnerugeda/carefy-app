@@ -197,8 +197,7 @@ class TagsController extends Controller
             if (!$tags) {
                 return response()->json(['message' => 'Tag não encontrada'], 202);
             }
-            $tags->data_exclusao = now();
-            $tags->save();
+            $tags->delete();
             return response()->json(['message'=> "Paciente deletado com sucesso!", "teste"=>now()], 200);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
