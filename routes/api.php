@@ -15,6 +15,7 @@ Route::get("/", function () {
 //Endpoints Pacientes
 Route::get("/pacientes", [PacienteController::class,"getAllPacientes"]);
 Route::get('/pacientes/{codigo}', [PacienteController::class, "getOnePaciente"]);
+Route::get("/pacientes/codigoTag/{codigo}", [PacienteController::class, "filtrarPorTag"]);
 Route::put("/pacientes/{codigo}", [PacienteController::class, "updatePaciente"]);
 Route::delete("/pacientes/{codigo}", [PacienteController::class,"deletePaciente"]);
 Route::post('/pesquisarPaciente', [PacienteController::class,'pesquisarPaciente']);

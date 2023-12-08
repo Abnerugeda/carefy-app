@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUpdatePacienteRequest;
 use App\Http\Resources\PacienteResource;
 use App\Models\Pacientes;
+use App\Models\Tags;
+use App\Models\TagsPaciente;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -114,6 +116,18 @@ class PacienteController extends Controller
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    public function filtrarPorTag(string $codigoTag){
+        try {
+            $pacientes = Pacientes::whereHas('tags', function ($query) use ($codigoTag) {
+                $query->where('tags.Codigo_Tag', $codigoTag);
+            })->get();
+            return PacienteResource::collection($pacientes);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
     /**
      * @OA\Post(
      * path="/pacientes",
