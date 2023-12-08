@@ -11,7 +11,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 
 ### 📋 Pré-requisitos
 
-Tenha o docker instalado e configurado em sua máquina
+Tenha o docker, o php e o composer instalados e configurados em sua máquina
 https://docs.docker.com/engine/install/
 
 Faça o clone do projeto em sua máquina
@@ -48,9 +48,10 @@ obs: caso alguma alteração seja feita em .env, certifique-se de que o docker-c
 
 ### Subir projeto no docker
 
-`
+```
+composer install
 ./vendor/bin/sail up
-`
+```
 ### instalação Swagger
 
 ```
