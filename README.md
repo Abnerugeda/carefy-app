@@ -37,6 +37,13 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+Adicionar variaveis:
+```
+WWWGROUP=1000
+WWWUSER=1000
+PWD=1000
+
+```
 obs: caso alguma alteração seja feita em .env, certifique-se de que o docker-compose esteja condizente.
 
 ### Subir projeto no docker
