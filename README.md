@@ -52,5 +52,5 @@ composer require "darkaonline/l5-swagger"
 php artisan l5-swagger:generate
 
 ```
-### O swagger abrirá em http://[seu host]:[sua porta]/api/documentation
+##### O swagger abrirá em http://[seu host]:[sua porta]/api/documentation
 
