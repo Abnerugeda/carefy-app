@@ -21,6 +21,11 @@ Faça o clone do projeto em sua máquina
 git clone https://github.com/Abnerugeda/carefy-app.git
 ```
 
+Se estiver utilizando windows recomendo que utilize o WSL Ubuntu:
+`
+wsl --install
+`
+
 ### 🔧 Instalação
 
 - Renomeie o arquivo .env.example para .env
