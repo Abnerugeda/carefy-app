@@ -11,8 +11,9 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 
 ### 📋 Pré-requisitos
 
-Tenha o docker, o php e o composer instalados e configurados em sua máquina
+Tenha o docker, o php^8.2 e o composer instalados e configurados em sua máquina
 https://docs.docker.com/engine/install/
+https://getcomposer.org/download/
 
 Faça o clone do projeto em sua máquina
 
