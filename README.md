@@ -52,7 +52,7 @@ PWD=1000
 ```
 obs: caso alguma alteração seja feita em .env, certifique-se de que o docker-compose esteja condizente.
 
-### Subir projeto no docker
+### Iniciar projeto no docker
 
 ```
 composer install
@@ -61,8 +61,6 @@ composer install
 ### instalação Swagger
 
 ```
-composer require symfony/yaml:^6.4
-composer require "darkaonline/l5-swagger"
 php artisan l5-swagger:generate
 
 ```
