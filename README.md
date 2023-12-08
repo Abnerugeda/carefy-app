@@ -41,22 +41,16 @@ obs: caso alguma alteração seja feita em .env, certifique-se de que o docker-c
 
 ### Subir projeto no docker
 
-## OPÇÃO 1
-- Para que o projeto rode no docker, na mesma pasta em que está o projeto, abra o seu terminal e rode o seguinte comando:
-
-`
-docker-compose up -d
-`
-
-## OPÇÃO 2
-- Caso queira rodar em modo produção apenas, abra o seu terminal e rode o seguinte comando:
-
 `
 ./vendor/bin/sail up
 `
 ### instalação Swagger
+
 ```
 composer require symfony/yaml:^6.4
 composer require "darkaonline/l5-swagger"
+php artisan l5-swagger:generate
+
 ```
+### O swagger abrirá em http://[seu host]:[sua porta]/api/documentation
 
