@@ -70,6 +70,9 @@ class CreateUpdatePacienteRequest extends FormRequest
                 'min:15',
                 'max:15'
             ],
+            'Tags' =>[
+                
+            ]
         ];
         if($this->method() === "PUT"){
             $rules["Codigo_Paciente"] = [

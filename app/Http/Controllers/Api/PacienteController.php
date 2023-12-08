@@ -121,7 +121,7 @@ class PacienteController extends Controller
      * tags={"Pacientes"},
      * @OA\RequestBody(
      *    required=true,
-     *    description="Insira corretamente todas as informações",
+     *    description="Insira corretamente todas as informações, obs: A tag para ser vinculada junto ao paciente neste cadastro, ela deve já existir!",
      *    @OA\JsonContent(
      *       @OA\Property(property="Codigo_Paciente", type="int", example="1234"),
      *       @OA\Property(property="Nome", type="string", example="Abner Ugeda"),
@@ -132,7 +132,12 @@ class PacienteController extends Controller
      *       @OA\Property(property="complemento", type="string", example="apto 71"),
      *       @OA\Property(property="UF", type="string", example="SP"),
      *       @OA\Property(property="Data_Nascimento", type="date", example="2023-01-01"),
-     *       @OA\Property(property="Telefone", type="string", example="(16) 99792-6503")
+     *       @OA\Property(property="Telefone", type="string", example="(16) 99792-6503"),
+     *       @OA\Property(property="Tags", type="array",  @OA\Items(
+     *         type="object",
+     *         @OA\Property(property="Codigo_Tag", type="string", example="123"),
+     *         @OA\Property(property="Codigo_Paciente", type="string", example="123"),
+     *     )),
      *    )
      * ),
      * @OA\Response(
@@ -159,6 +164,9 @@ class PacienteController extends Controller
     {
         try {
             $paciente = Pacientes::create($request->validated());
+            $tagsData = $request->input('Tags'); 
+            $paciente->tags()->attach($tagsData);
+
             return new PacienteResource($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
