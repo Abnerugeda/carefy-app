@@ -117,10 +117,31 @@ class PacienteController extends Controller
         }
     }
 
-    public function filtrarPorTag(string $codigoTag){
+    /**
+     * @OA\Get(
+     *     path="/pacientes/codigoTag/{codigo}",
+     *     summary="Colete a informação um paciente por tag",
+     *     tags={"Pacientes"},
+     *     description="Coletar todos os dados de um paciente pelo seu codigo",
+     *     @OA\Response(response="200", description="Sucesso"),
+     *     @OA\Response(response="500", description="Erro no sistema"),
+     *     @OA\Parameter(
+     *         name="codigo",
+     *         in="path",
+     *         description="Buscar por codigo",
+     *         required=true,
+     *      ),
+     * )
+     */
+
+
+    public function filtrarPorTag(string $codigoTag)
+    {
         try {
             $pacientes = Pacientes::whereHas('tags', function ($query) use ($codigoTag) {
                 $query->where('tags.Codigo_Tag', $codigoTag);
+            })->where(function ($query) {
+                $query->whereNull('data_exclusao');
             })->get();
             return PacienteResource::collection($pacientes);
         } catch (Exception $e) {
@@ -254,7 +275,7 @@ class PacienteController extends Controller
                 return response()->json(['message' => 'Paciente não encontrado'], 202);
             }
             $paciente->update($request->validated());
-            $tagsData = $request->input('Tags', []); 
+            $tagsData = $request->input('Tags', []);
 
             $paciente->tags()->detach();
 

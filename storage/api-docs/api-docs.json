@@ -323,6 +323,32 @@
                 }
             }
         },
+        "/pacientes/codigoTag/{codigo}": {
+            "get": {
+                "tags": [
+                    "Pacientes"
+                ],
+                "summary": "Colete a informação um paciente por tag",
+                "description": "Coletar todos os dados de um paciente pelo seu codigo",
+                "operationId": "ae7f3ccb3336f661a0f5364973e2b66f",
+                "parameters": [
+                    {
+                        "name": "codigo",
+                        "in": "path",
+                        "description": "Buscar por codigo",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "500": {
+                        "description": "Erro no sistema"
+                    }
+                }
+            }
+        },
         "/tags": {
             "get": {
                 "tags": [
