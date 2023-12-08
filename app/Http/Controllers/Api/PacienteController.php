@@ -72,7 +72,7 @@ class PacienteController extends Controller
         }
     }
 
-     /**
+    /**
      * @OA\Post(
      * path="/pesquisarPaciente",
      * summary="",
@@ -96,8 +96,9 @@ class PacienteController extends Controller
      * ),
      * )
      */
-    
-    public function pesquisarPaciente(Request $request){
+
+    public function pesquisarPaciente(Request $request)
+    {
         try {
             $termoPesquisa = $request->input('termo');
             $pacientes = Pacientes::where(function ($query) use ($termoPesquisa) {
@@ -106,8 +107,8 @@ class PacienteController extends Controller
                     ->orWhere('Telefone', 'like', "%$termoPesquisa%")
                     ->orWhere('Data_Nascimento', 'like', "%$termoPesquisa%");
             })
-            ->whereNull('data_exclusao')
-            ->get();
+                ->whereNull('data_exclusao')
+                ->get();
             return PacienteResource::collection($pacientes);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
@@ -164,7 +165,7 @@ class PacienteController extends Controller
     {
         try {
             $paciente = Pacientes::create($request->validated());
-            $tagsData = $request->input('Tags'); 
+            $tagsData = $request->input('Tags');
             $paciente->tags()->attach($tagsData);
 
             return new PacienteResource($paciente);
@@ -193,7 +194,12 @@ class PacienteController extends Controller
      *       @OA\Property(property="complemento", type="string", example="apto 71"),
      *       @OA\Property(property="UF", type="string", example="SP"),
      *       @OA\Property(property="Data_Nascimento", type="date", example="2023-01-01"),
-     *       @OA\Property(property="Telefone", type="string", example="(16) 99792-6503")
+     *       @OA\Property(property="Telefone", type="string", example="(16) 99792-6503"),
+     *       @OA\Property(property="Tags", type="array",  @OA\Items(
+     *         type="object",
+     *         @OA\Property(property="Codigo_Tag", type="string", example="123"),
+     *         @OA\Property(property="Codigo_Paciente", type="string", example="123"),
+     *     )),
      *    )
      * ),
      *  @OA\Parameter(
@@ -228,20 +234,28 @@ class PacienteController extends Controller
 
     public function updatePaciente(CreateUpdatePacienteRequest $request, string $codigo)
     {
-        try {            
+        try {
             $paciente = Pacientes::where("Codigo_Paciente", "=", $codigo)->first();
             if (!$paciente) {
                 return response()->json(['message' => 'Paciente não encontrado'], 202);
             }
             $paciente->update($request->validated());
+            $tagsData = $request->input('Tags', []); 
+
+            $paciente->tags()->detach();
+
+            foreach ($tagsData as $tag) {
+                $paciente->tags()->attach($tag['Codigo_Tag']);
+            }
+
             return new PacienteResource($paciente);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 
-    
-     /**
+
+    /**
      * @OA\Delete(
      *     path="/pacientes/{codigo}",
      *     summary="Delete um paciente",
@@ -260,7 +274,8 @@ class PacienteController extends Controller
      */
 
 
-    public function deletePaciente(string $codigo){
+    public function deletePaciente(string $codigo)
+    {
         try {
             $paciente = Pacientes::where("Codigo_Paciente", "=", $codigo)->first();
             if (!$paciente) {
@@ -268,9 +283,9 @@ class PacienteController extends Controller
             }
             $paciente->data_exclusao = now();
             $paciente->save();
-            return response()->json(['message'=> "Paciente deletado com sucesso!"], 200);
-        }catch(Exception $e){
-            return response()->json(['message'=> $e->getMessage()], 500);
+            return response()->json(['message' => "Paciente deletado com sucesso!"], 200);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 }

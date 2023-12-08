@@ -214,6 +214,22 @@
                                     "Telefone": {
                                         "type": "string",
                                         "example": "(16) 99792-6503"
+                                    },
+                                    "Tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "Codigo_Tag": {
+                                                    "type": "string",
+                                                    "example": "123"
+                                                },
+                                                "Codigo_Paciente": {
+                                                    "type": "string",
+                                                    "example": "123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
                                     }
                                 },
                                 "type": "object"
